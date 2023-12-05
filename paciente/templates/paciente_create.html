@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {%-primary waves-effect waves block content %}
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <br />
+  <h1 class="text-center">Create Paciente</h1>
+  {{ form.nombre.label }} {{ form.nombre(class="form-control") }} {{
+  form.correo.label }} {{ form.correo(class="form-control") }} {{ form.cc.label
+  }} {{ form.cc(class="form-control") }} {{ form.plan_Salud.label }} {{
+  form.plan_Salud(class="form-control") }}
+  <button type="submit" class="btn btn-success waves-effect waves-light">
+    Create
+  </button>
+  <a
+    href="{{ url_for('paciente_list') }}"
+    class="btn btn-primary waves-effect waves-light"
+    >Back</a
+  >
+</form>
+{% endblock %}
