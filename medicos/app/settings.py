@@ -123,15 +123,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+#MEDIA_URL = '/media/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(PROJECT_ROOT, 'static'),
+#)
 
 MONGO_CLI = "mongodb://medicos_user:isis2503@10.128.0.8:27017/"
