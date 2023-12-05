@@ -13,14 +13,14 @@ ENV MEDICOS_DB_HOST 10.128.0.8
 #RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     gcc \
     python3-dev \
     musl-dev
 
 # Install MongoDB dependencies
-RUN apt-get install -y \
-    libssl-dev \
+RUN apk add --no-cache \
+    openssl-dev \
     libffi-dev
 
 # Install the MongoDB driver for Django
