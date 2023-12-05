@@ -1,6 +1,6 @@
 import requests
 
-from horario.app import settings
+from django.conf import settings
 from .models import Horario
 from django.shortcuts import render, redirect
 from django.contrib import messages
