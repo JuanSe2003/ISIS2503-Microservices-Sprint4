@@ -7,7 +7,7 @@ COPY . /app
 
 # Set the environment variables
 ENV CITAS_DB_HOST 10.128.0.5
-ENV PACIENTES_HOST 10.128.0.2
+#ENV PACIENTES_HOST 10.128.0.2
 ENV HORARIOS_HOST 10.128.0.11
 ENV MEDICOS_HOST 10.128.0.6
 # Install Python dependencies
