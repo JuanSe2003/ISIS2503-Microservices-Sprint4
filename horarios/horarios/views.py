@@ -10,7 +10,7 @@ from django.http import JsonResponse
 import json
 
 def HorarioList(request):
-    queryset = HorarioList.objects.all()
+    queryset = Horario.objects.all()
     context = list(queryset.values('id', 'profesional','date','hora_inicio','hora_fin','disponible'))
     return JsonResponse(context, safe=False)
 
