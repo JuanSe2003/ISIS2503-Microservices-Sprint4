@@ -84,6 +84,18 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'medicos_db',
+        'CLIENT': {
+            'host': 'mongodb://medicos_user:isis2503@10.128.0.8:27017/',
+            'username': 'medicos_user',
+            'password': 'isis2503',
+        },
+    }
+}
+
 
 
 # Password validation
