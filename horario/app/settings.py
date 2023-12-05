@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'monitoring.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'monitoring.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'variables_db',
-        'USER': 'variables_user',
+        'NAME': 'horarios_db',
+        'USER': 'horarios_user',
         'PASSWORD': 'isis2503',
         'HOST': '0.0.0.0',
         'PORT': '5432',
@@ -132,3 +132,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
+
+
+PATH_VAR = "http://" + os.environ.get("MEDICOS_HOST", "0.0.0.0") + ":" + os.environ.get("MEDICOS_PORT", "8080") + "/medicos"
