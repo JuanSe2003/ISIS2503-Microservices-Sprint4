@@ -6,8 +6,8 @@ WORKDIR /app
 COPY . /app
 
 # Set the environment variables
-ENV HORARIOS_DB_HOST 10.128.0.2
-ENV MEDICOS_HOST 10.128.0.3
+ENV HORARIOS_DB_HOST 10.128.0.7
+ENV MEDICOS_HOST 10.128.0.6
 
 # Install Python dependencies
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev

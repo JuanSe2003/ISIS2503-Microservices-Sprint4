@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . /app
 
 # Set the environment variables
-ENV MEDICOS_DB_HOST 10.128.0.3
+ENV MEDICOS_DB_HOST 10.128.0.8
 
 # Install Python dependencies
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
