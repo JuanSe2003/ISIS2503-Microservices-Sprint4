@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'citas_db',
-        'USER': 'citas_user',
-        'PASSWORD': 'isis2503',
-        'HOST': '10.128.0.2',
-        'PORT': '5432',
+        'NAME': os.environ.get("CITAS_DB", "citas_db"),
+        'USER': os.environ.get("CITAS_DB_USER", "citas_user"),
+        'PASSWORD': os.environ.get("CITAS_DB_PASSWD", "isis2503"),
+        'HOST': os.environ.get("CITAS_DB_HOST", "0.0.0.0"),
+        'PORT': os.environ.get("CITAS_DB_PORT", "5432")
     }
 }
 

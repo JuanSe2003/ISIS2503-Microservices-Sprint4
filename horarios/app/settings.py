@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'horarios_db',
-        'USER': 'horarios_user',
-        'PASSWORD': 'isis2503',
-        'HOST': '0.0.0.0',
-        'PORT': '5432',
+        'NAME': os.environ.get("HORARIOS_DB", "horarios_db"),
+        'USER': os.environ.get("HORARIOS_DB_USER", "horarios_user"),
+        'PASSWORD': os.environ.get("HORARIOS_DB_PASSWD", "isis2503"),
+        'HOST': os.environ.get("HORARIOS_DB_HOST", "0.0.0.0"),
+        'PORT': os.environ.get("HORARIOS_DB_PORT", "5432")
     }
 }
 

@@ -74,16 +74,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'medicos_db',
-        'USER': 'medicos_user',
-        'PASSWORD': 'isis2503',
-        'HOST': '0.0.0.0',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'medicos_db',
+#         'USER': 'medicos_user',
+#         'PASSWORD': 'isis2503',
+#         'HOST': '0.0.0.0',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
