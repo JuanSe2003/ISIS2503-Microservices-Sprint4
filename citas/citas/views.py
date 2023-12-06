@@ -8,6 +8,7 @@ from django.conf import settings
 import requests
 from .tests import CitaForm
 import json
+from .logic.cita_logic import crear_cita, get_citas, get_cita
 
 
 def check_medico(data):
@@ -37,24 +38,19 @@ def CitaList(request):
     cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
     context= {'citas': cita_list}
     return render(request, 'citas.html', context)
-def CitaCreate(request):
-    context = {"form": CitaForm()}
+def cita_create(request):
     if request.method == 'POST':
-        data = request.body.decode('utf-8')
-        data_json = json.loads(data)
-        context = {"form": data_json}
-        if check_horario(data_json) == True and check_medico(data_json) == True :
-            measurement = Cita()
-            measurement.id = data_json['id']
-            measurement.medico = data_json['medico']
-            measurement.horario = data_json['horario']
-            measurement.paciente = data_json['paciente']
-            measurement.save()
-            queryset = Cita.objects.all()
-            cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
-            context = {"citas": cita_list}
-            return render(request, 'citas.html', context)
-        return render(request, 'citaCreate.html', context)
+        form = CitaForm(request.POST)
+        if form.is_valid():
+            crear_cita(form)
+            messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
+            return HttpResponseRedirect(reverse('citaCreate'))
+        else:
+            print(form.errors)
+    else:
+        form = CitaForm()
+
+    context = {
+        'form': form,
+    }
     return render(request, 'citaCreate.html', context)
-        
-        
