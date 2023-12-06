@@ -33,7 +33,7 @@ def check_paciente(data):
             return True
     return False
 
-def CitaList(request):
+def cita_list(request):
     queryset = Cita.objects.all()
     cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
     context= {'citas': cita_list}
