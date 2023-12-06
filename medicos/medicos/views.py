@@ -1,25 +1,39 @@
 from .models import Medico
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.http import JsonResponse
+from .tests import MedicoForm
+from .logic.medico_logic import crear_medico, get_medicos, get_medico
 import json
+ 
+def medico_list(request):
+    medicos = get_medicos()
+    context = {'medicos':medicos}
+    return render(request, 'medicos.html', context)
 
-def MedicoList(request):
-    queryset = Medico.objects.all()
-    context = list(queryset.values('id', 'name','last_name','especialidad','consultorio'))
-    return JsonResponse(context, safe=False)
 
-def MedicoCreate(request):
+def medico_create(request):
+    
     if request.method == 'POST':
-        data = request.body.decode('utf-8')
-        data_json = json.loads(data)
-        medico = Medico()
-        medico.id = data_json["id"]
-        medico.name = data_json["name"]
-        medico.last_name = data_json["last_name"]
-        medico.especialidad = data_json["especialidad"]
-        medico.consultorio = data_json["consultorio"]
-        medico.save()
-        return HttpResponse("successfully created medico")
+            form = MedicoForm(request.POST)
+            if form.is_valid():
+                crear_medico(form)
+                messages.add_message(request, messages.SUCCESS, 'Successfully created medico')
+                return HttpResponseRedirect(reverse('medicoCreate'))
+            else:
+                print(form.errors)
+    else:
+            form = MedicoForm()
+
+    context = {
+            'form': form,
+    }
+    return render(request, 'medicoCreate.html', context)
+
+
+def get_medico(request):
+    medico = get_medico()
+    context = {'medico':medico}
+    return render(request, 'medico_list.html', context)
