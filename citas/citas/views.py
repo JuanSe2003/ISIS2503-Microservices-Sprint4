@@ -32,10 +32,14 @@ def check_paciente(data):
     return False
 
 def CitaList(request):
-    queryset =Cita.objects.all()
-    context = list(queryset.values('id', 'medico', 'horario', 'paciente'))
-    return render(request, 'citas.html', context)
+    queryset = Cita.objects.all()
+    cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
 
+    if request.headers.get('accept') == 'application/json':
+        return JsonResponse(cita_list, safe=False)
+    else:
+        return render(request, 'citas.html', {'cita_list': cita_list})
+    
 def CitaCreate(request):
     if request.method == 'POST':
         data = request.body.decode('utf-8')
