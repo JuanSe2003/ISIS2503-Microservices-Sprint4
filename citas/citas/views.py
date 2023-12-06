@@ -38,6 +38,7 @@ def CitaList(request):
     context= {'citas': cita_list}
     return render(request, 'citas.html', context)
 def CitaCreate(request):
+    context = {"form": CitaForm()}
     if request.method == 'POST':
         data = request.body.decode('utf-8')
         data_json = json.loads(data)
