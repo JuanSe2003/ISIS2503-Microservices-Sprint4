@@ -50,10 +50,11 @@ def CitaCreate(request):
             measurement.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
             context = {"form": measurement}
-            return render(request, 'citaCreate.html', measurement)
+            return render(request, 'citaCreate.html', context)
         else:
             messages.add_message(request, messages.ERROR, 'Error al crear cita')
-            return render(request, 'citaCreate.html')      
-    
+            return render(request, 'citaCreate.html') 
+    # Add a response for other request methods (e.g., GET)
+    return HttpResponse("Method not allowed", status=405)
 
         
