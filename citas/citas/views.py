@@ -49,7 +49,11 @@ def CitaCreate(request):
             measurement.horario = data_json['horario']
             measurement.paciente = data_json['paciente']
             measurement.save()
-            context = {"form": measurement}
+            queryset = Cita.objects.all()
+            cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
+            context = {"citas": cita_list}
+            return render(request, 'citas.html', context)
         return render(request, 'citaCreate.html', context)
+    return render(request, 'citaCreate.html', context)
         
         
