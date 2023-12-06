@@ -48,7 +48,7 @@ def CitaCreate(request):
             measurement.paciente = data_json['paciente']
             measurement.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
-            return render(request, 'templates/citaCreate.html', measurement)
+            return render(request, 'citaCreate.html', measurement)
         else:
             messages.add_message(request, messages.ERROR, 'Error al crear cita')
             return render(request, 'citaCreate.html')      
