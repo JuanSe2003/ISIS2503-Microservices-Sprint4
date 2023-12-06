@@ -1,7 +1,7 @@
 from .models import Cita
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
@@ -34,7 +34,7 @@ def check_paciente(data):
 def CitaList(request):
     queryset =Cita.objects.all()
     context = list(queryset.values('id', 'medico', 'horario', 'paciente'))
-    return JsonResponse(context, safe=False)
+    return render(request, 'templates/citas.html', context)
 
 def CitaCreate(request):
     if request.method == 'POST':
@@ -47,7 +47,11 @@ def CitaCreate(request):
             measurement.horario = data_json['horario']
             measurement.paciente = data_json['paciente']
             measurement.save()
-            return HttpResponse("successfully created measurement")
+            messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
+            return render(request, 'templates/citaCreate.html', measurement)
         else:
-            return HttpResponse("unsuccessfully created measurement. Variable does not exist")
+            messages.add_message(request, messages.ERROR, 'Error al crear cita')
+            return render(request, 'citaCreate.html')      
+    
 
+        
