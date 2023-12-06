@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
 import requests
+from .tests import CitaForm
 import json
 
 
@@ -34,12 +35,8 @@ def check_paciente(data):
 def CitaList(request):
     queryset = Cita.objects.all()
     cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
-
-    if request.headers.get('accept') == 'application/json':
-        return JsonResponse(cita_list, safe=False)
-    else:
-        return render(request, 'citas.html', {'cita_list': cita_list})
-    
+    context= {'citas': cita_list}
+    return render(request, 'citas.html', context)
 def CitaCreate(request):
     if request.method == 'POST':
         data = request.body.decode('utf-8')
@@ -52,6 +49,7 @@ def CitaCreate(request):
             measurement.paciente = data_json['paciente']
             measurement.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully created cita')
+            context = {"form": CitaForm()}
             return render(request, 'citaCreate.html', measurement)
         else:
             messages.add_message(request, messages.ERROR, 'Error al crear cita')
