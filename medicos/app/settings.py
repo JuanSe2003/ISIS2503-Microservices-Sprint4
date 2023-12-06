@@ -131,5 +131,3 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-
-MONGO_CLI = "mongodb://medicos_user:isis2503@10.128.0.8:27017/"
