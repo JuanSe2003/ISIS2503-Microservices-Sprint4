@@ -4,12 +4,8 @@
   <div class="">
     <div class="page-header-title">
       <h4 class="page-title">Pacientes</h4>
-      <div style="text-align: right">
-        <a
-          href="{{ url_for('paciente_create') }}"
-          class="btn btn-success waves-effect waves-light"
-          >+</a
-        >
+      <div style="text-align:right;">
+        <a href="{{ url_for('paciente_create') }}" class="btn btn-success waves-effect waves-light" style="text-align:center;">+</a>
       </div>
     </div>
   </div>
@@ -44,10 +40,6 @@
               {% endfor %}
             </tbody>
           </table>
-
-          <div style="text-align: center">
-            <a href="{{ url_for('index') }}" class="btn btn-light">Back</a>
-          </div>
         </div>
       </div>
     </div>
