@@ -41,6 +41,7 @@ def CitaCreate(request):
     if request.method == 'POST':
         data = request.body.decode('utf-8')
         data_json = json.loads(data)
+        context = {"form": data_json}
         if check_horario(data_json) == True and check_medico(data_json) == True :
             measurement = Cita()
             measurement.id = data_json['id']
@@ -49,6 +50,6 @@ def CitaCreate(request):
             measurement.paciente = data_json['paciente']
             measurement.save()
             context = {"form": measurement}
-            return render(request, 'citaCreate.html', context)
+        return render(request, 'citaCreate.html', context)
         
         
