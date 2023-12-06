@@ -34,9 +34,8 @@ def check_paciente(data):
     return False
 
 def cita_list(request):
-    queryset = Cita.objects.all()
-    cita_list = list(queryset.values('id', 'medico', 'horario', 'paciente'))
-    context= {'citas': cita_list}
+    citas = get_citas()
+    context = {'citas':citas}
     return render(request, 'citas.html', context)
 def cita_create(request):
     if request.method == 'POST':
